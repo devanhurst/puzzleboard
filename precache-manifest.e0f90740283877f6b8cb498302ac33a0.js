@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "24befe2d80f77ea8ac679c0df3c419f6",
+    "revision": "d448285e20a46d6e845f0b22d6581a63",
     "url": "/puzzleboard/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/puzzleboard/static/js/2.7a924fed.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "59d150b4e8c123a45805",
-    "url": "/puzzleboard/static/js/main.64b621cd.chunk.js"
+    "revision": "a7967eb5b2b58cb21084",
+    "url": "/puzzleboard/static/js/main.dea34e4c.chunk.js"
   },
   {
     "revision": "3d98e1bf9e24054dbcfe",
