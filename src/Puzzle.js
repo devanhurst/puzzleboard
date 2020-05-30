@@ -1,7 +1,20 @@
+export class Puzzle {
+  constructor() {
+    this.line1 = new Line(12);
+    this.line2 = new Line(14);
+    this.line3 = new Line(14);
+    this.line4 = new Line(12);
+  }
+}
+
 export class Letter {
   constructor(letter) {
     this.letter = letter;
     this.revealed = false;
+  }
+
+  isVowel() {
+    return ["A", "E", "I", "O", "U"].includes(this.letter);
   }
 
   toggle() {
@@ -23,15 +36,9 @@ export class Punctuation extends Letter {
   }
 }
 
-export class Word {
-  constructor(letters) {
-    this.letters = letters;
-  }
-}
-
 export class Line {
-  constructor() {
-    this.size = 12;
+  constructor(size) {
+    this.size = size;
     this.letters = [];
   }
 }

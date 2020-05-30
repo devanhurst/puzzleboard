@@ -3,16 +3,22 @@ import UsedLetterContext from "../providers/UsedLetters";
 
 const UsedLetterboard = (props) => {
   const usedLetters = useContext(UsedLetterContext);
-  const usedString = usedLetters
-    .map((letter) => (letter.revealed ? null : letter.letter))
-    .filter((letter) => !!letter)
-    .join(" ");
-  return (
-    <pre>
-      ** Letters Remaining **
-      {usedString}
-    </pre>
-  );
+  const consonants = usedLetters.filter((letter) => !letter.isVowel());
+  const vowels = usedLetters.filter((letter) => letter.isVowel());
+
+  const unused = (letters) =>
+    letters
+      .map((letter) => (letter.revealed ? null : letter.letter))
+      .filter((letter) => !!letter)
+      .join(" ");
+
+  // prettier-ignore
+  return `
+** Consonants Remaining **
+${unused(consonants)}
+** Vowels Remaining **
+${unused(vowels)}
+`
 };
 
 export default UsedLetterboard;

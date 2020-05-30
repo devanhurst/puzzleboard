@@ -6,18 +6,19 @@ const Key = (props) => {
   const { letter, toggle } = props;
   const usedLetters = useContext(UsedLetterContext);
 
+  const usedLetter = usedLetters.filter(
+    (usedLetter) => usedLetter.letter === letter
+  )[0];
+  const color = usedLetter.isVowel() ? "secondary" : "primary";
+
   const handleClick = () => {
     toggle(letter);
   };
 
-  const selected = () =>
-    usedLetters.filter((usedLetter) => usedLetter.letter === letter)[0]
-      .revealed;
-
   return (
     <Button
       variant="contained"
-      color={selected() ? "default" : "primary"}
+      color={usedLetter.revealed ? "default" : color}
       onClick={handleClick}
     >
       {letter}

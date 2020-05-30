@@ -6,10 +6,11 @@ import {
   NavLink,
 } from "react-router-dom";
 import Game from "./Game";
+import { Puzzle } from "../Puzzle.js";
 
 const App = () => {
   const [category, setCategory] = useState("TITLE");
-  const [answer, setAnswer] = useState("WHEEL OF FORTUNE");
+  const [answer, setAnswer] = useState(new Puzzle());
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,17 +42,33 @@ const App = () => {
                 onChange={updateCategory}
               />
             </label>
-            <br />
             <label>
               Puzzle:
               <input
                 type="text"
-                placeholder="WHEEL OF FORTUNE"
-                value={answer}
+                placeholder="LINE 1"
+                value={answer.line1}
+                onChange={updateAnswer}
+              />
+              <input
+                type="text"
+                placeholder="LINE TWO"
+                value={answer.line2}
+                onChange={updateAnswer}
+              />
+              <input
+                type="text"
+                placeholder="LINE THREE"
+                value={answer.line3}
+                onChange={updateAnswer}
+              />
+              <input
+                type="text"
+                placeholder="LINE FOUR"
+                value={answer.line4}
                 onChange={updateAnswer}
               />
             </label>
-            <br />
           </form>
           <NavLink to="/puzzleboard/play">Start Game</NavLink>
         </Route>
