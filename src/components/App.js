@@ -6,11 +6,10 @@ import {
   NavLink,
 } from "react-router-dom";
 import Game from "./Game";
-import { Puzzle } from "../Puzzle.js";
 
 const App = () => {
   const [category, setCategory] = useState("TITLE");
-  const [answer, setAnswer] = useState(new Puzzle());
+  const [answer, setAnswer] = useState({});
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -20,8 +19,10 @@ const App = () => {
     setCategory(event.target.value.toUpperCase());
   };
 
-  const updateAnswer = (event) => {
-    setAnswer(event.target.value.toUpperCase());
+  const updateAnswer = (value, line) => {
+    const newAnswer = { ...answer };
+    newAnswer[line] = value.toUpperCase();
+    setAnswer(newAnswer);
   };
 
   return (
@@ -37,6 +38,7 @@ const App = () => {
               Category:
               <input
                 type="text"
+                maxLength={20}
                 placeholder="TITLE"
                 value={category}
                 onChange={updateCategory}
@@ -46,27 +48,31 @@ const App = () => {
               Puzzle:
               <input
                 type="text"
-                placeholder="LINE 1"
+                maxLength={12}
+                placeholder="LINE ONE"
                 value={answer.line1}
-                onChange={updateAnswer}
+                onChange={(event) => updateAnswer(event.target.value, 1)}
               />
               <input
                 type="text"
+                maxLength={14}
                 placeholder="LINE TWO"
                 value={answer.line2}
-                onChange={updateAnswer}
+                onChange={(event) => updateAnswer(event.target.value, 2)}
               />
               <input
                 type="text"
+                maxLength={14}
                 placeholder="LINE THREE"
                 value={answer.line3}
-                onChange={updateAnswer}
+                onChange={(event) => updateAnswer(event.target.value, 3)}
               />
               <input
                 type="text"
+                maxLength={12}
                 placeholder="LINE FOUR"
                 value={answer.line4}
-                onChange={updateAnswer}
+                onChange={(event) => updateAnswer(event.target.value, 4)}
               />
             </label>
           </form>

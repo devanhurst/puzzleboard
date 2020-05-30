@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Grid, ButtonGroup } from "@material-ui/core";
+import React from "react";
+import { Grid } from "@material-ui/core";
 import Key from "./Key";
 
 const Keyboard = (props) => {

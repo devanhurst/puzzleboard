@@ -7,43 +7,48 @@ import UsedLettersContext, {
   defaultUsedLetters,
 } from "../providers/UsedLetters";
 import { Grid, Fab } from "@material-ui/core";
+import { Puzzle } from "../Puzzle";
+import PuzzleImage from "./PuzzleImage";
 
 const Game = (props) => {
   const { category, answer } = props;
+  const [puzzle] = useState(new Puzzle(category, answer));
   const [usedLetters, setUsedLetters] = useState(defaultUsedLetters);
 
   // prettier-ignore
   const textToCopy = () =>
 `
-${puzzleUrl()}
+${puzzle.imageUrl()}
 ${usedLetterboard(usedLetters)}
 `;
 
-  const toggleLetter = (letterToReveal) => {
+  const toggleLetter = (letterToToggle) => {
     const letters = [...usedLetters];
-    letters
-      .filter((usedLetter) => usedLetter.letter === letterToReveal)[0]
-      .toggle();
+    const usedLetter = letters.filter(
+      (usedLetter) => usedLetter.letter === letterToToggle
+    )[0];
+    usedLetter.toggle();
+    if (usedLetter.revealed) {
+      puzzle.reveal(letterToToggle);
+    } else {
+      puzzle.hide(letterToToggle);
+    }
     setUsedLetters(letters);
     setClipboard(textToCopy());
   };
-
-  const defaultParams = () => `bg=2&cat=${encodeURIComponent(category)}`;
-  const thumbnailUrl = () =>
-    `https://www.thewordfinder.com/wof-puzzle-generator/puzzle-thumb.php?${defaultParams()}`;
-  const puzzleUrl = () =>
-    `https://www.thewordfinder.com/wof-puzzle-generator/puzzle.php?${defaultParams()}`;
 
   const [clipboard, setClipboard] = useState(textToCopy());
 
   return (
     <ClipboardContext.Provider value={clipboard}>
       <UsedLettersContext.Provider value={usedLetters}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <img width="100%" src={thumbnailUrl()} alt="puzzleboard" />
+        <div height="25%">
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <PuzzleImage puzzle={puzzle} />
+            </Grid>
           </Grid>
-        </Grid>
+        </div>
         <Keyboard toggle={toggleLetter} />
         <CopyToClipboard text={clipboard} onCopy={() => {}}>
           <Fab variant="extended">Copy Puzzle to Clipboard</Fab>
