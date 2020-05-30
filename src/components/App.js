@@ -8,7 +8,7 @@ import {
 import Game from "./Game";
 
 const App = () => {
-  const [category, setCategory] = useState("TITLE");
+  const [category, setCategory] = useState("");
   const [answer, setAnswer] = useState({});
 
   const handleSubmit = (event) => {
@@ -39,7 +39,7 @@ const App = () => {
               <input
                 type="text"
                 maxLength={20}
-                placeholder="TITLE"
+                placeholder="CATEGORY"
                 value={category}
                 onChange={updateCategory}
               />

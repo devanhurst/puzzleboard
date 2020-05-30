@@ -54,11 +54,16 @@ export class Puzzle {
   }
 
   reveal(letterToReveal) {
+    let numberRevealed = 0;
+
     this.letters.forEach((letter) => {
       if (letter.letter === letterToReveal) {
         letter.reveal();
+        numberRevealed++;
       }
     });
+
+    return numberRevealed;
   }
 
   hide(letterToHide) {

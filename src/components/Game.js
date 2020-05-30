@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import Keyboard from "./Keyboard";
 import usedLetterboard from "../usedLetterboard";
@@ -14,30 +14,44 @@ const Game = (props) => {
   const { category, answer } = props;
   const [puzzle] = useState(new Puzzle(category, answer));
   const [usedLetters, setUsedLetters] = useState(defaultUsedLetters);
+  const [lastLetterRevealed, setLastLetterRevealed] = useState("");
+  const [clipboard, setClipboard] = useState("");
 
-  // prettier-ignore
-  const textToCopy = () =>
+  useEffect(() => {
+    const lastLetterRevealedText = !!lastLetterRevealed
+      ? `**Last Pick: ${lastLetterRevealed["letter"]}** (x${lastLetterRevealed["number"]})`
+      : "";
+
+    // prettier-ignore
+    const textToCopy =
 `
 ${puzzle.imageUrl()}
 ${usedLetterboard(usedLetters)}
+${lastLetterRevealedText}
 `;
+
+    setClipboard(textToCopy);
+  }, [puzzle, usedLetters, lastLetterRevealed]);
 
   const toggleLetter = (letterToToggle) => {
     const letters = [...usedLetters];
     const usedLetter = letters.filter(
       (usedLetter) => usedLetter.letter === letterToToggle
     )[0];
-    usedLetter.toggle();
-    if (usedLetter.revealed) {
-      puzzle.reveal(letterToToggle);
+
+    let revealedLetter = null;
+
+    if (!usedLetter.revealed) {
+      usedLetter.reveal();
+      const numberRevealed = puzzle.reveal(letterToToggle);
+      revealedLetter = { letter: letterToToggle, number: numberRevealed };
     } else {
+      usedLetter.hide();
       puzzle.hide(letterToToggle);
     }
+    setLastLetterRevealed(revealedLetter);
     setUsedLetters(letters);
-    setClipboard(textToCopy());
   };
-
-  const [clipboard, setClipboard] = useState(textToCopy());
 
   return (
     <ClipboardContext.Provider value={clipboard}>
