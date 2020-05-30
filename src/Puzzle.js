@@ -66,6 +66,14 @@ export class Puzzle {
     return numberRevealed;
   }
 
+  revealRandom() {
+    const candidates = this.letters.filter((letter) => !letter.revealed);
+    const random = candidates[Math.floor(Math.random() * candidates.length)];
+    if (random) {
+      random.reveal();
+    }
+  }
+
   hide(letterToHide) {
     this.letters.forEach((letter) => {
       if (letter.letter === letterToHide) {

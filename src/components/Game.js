@@ -53,6 +53,11 @@ ${lastLetterRevealedText}
     setUsedLetters(letters);
   };
 
+  const revealRandom = () => {
+    puzzle.revealRandom();
+    setLastLetterRevealed({ letter: "TOSS UP", number: 1 });
+  };
+
   return (
     <ClipboardContext.Provider value={clipboard}>
       <UsedLettersContext.Provider value={usedLetters}>
@@ -63,7 +68,7 @@ ${lastLetterRevealedText}
             </Grid>
           </Grid>
         </div>
-        <Keyboard toggle={toggleLetter} />
+        <Keyboard toggle={toggleLetter} revealRandom={revealRandom} />
         <CopyToClipboard text={clipboard} onCopy={() => {}}>
           <Fab variant="extended">Copy Puzzle to Clipboard</Fab>
         </CopyToClipboard>

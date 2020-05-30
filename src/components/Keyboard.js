@@ -1,9 +1,9 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import Key from "./Key";
 
 const Keyboard = (props) => {
-  const { toggle } = props;
+  const { toggle, revealRandom } = props;
 
   return (
     <Grid container>
@@ -38,6 +38,9 @@ const Keyboard = (props) => {
         <Key letter="B" toggle={toggle} />
         <Key letter="N" toggle={toggle} />
         <Key letter="M" toggle={toggle} />
+        <Button variant="contained" color="secondary" onClick={revealRandom}>
+          Toss Up
+        </Button>
       </Grid>
     </Grid>
   );
