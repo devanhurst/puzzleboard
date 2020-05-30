@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/puzzleboard/static/js/main.01e23beb.chunk.js",
-    "main.js.map": "/puzzleboard/static/js/main.01e23beb.chunk.js.map",
+    "main.js": "/puzzleboard/static/js/main.143ad0de.chunk.js",
+    "main.js.map": "/puzzleboard/static/js/main.143ad0de.chunk.js.map",
     "runtime-main.js": "/puzzleboard/static/js/runtime-main.2cd87651.js",
     "runtime-main.js.map": "/puzzleboard/static/js/runtime-main.2cd87651.js.map",
     "static/js/2.3756bf2a.chunk.js": "/puzzleboard/static/js/2.3756bf2a.chunk.js",
     "static/js/2.3756bf2a.chunk.js.map": "/puzzleboard/static/js/2.3756bf2a.chunk.js.map",
     "index.html": "/puzzleboard/index.html",
-    "precache-manifest.5d33231a75414c4850188fb942a2220a.js": "/puzzleboard/precache-manifest.5d33231a75414c4850188fb942a2220a.js",
+    "precache-manifest.d778bcc80377f0f8b731a48bb067378b.js": "/puzzleboard/precache-manifest.d778bcc80377f0f8b731a48bb067378b.js",
     "service-worker.js": "/puzzleboard/service-worker.js",
     "static/js/2.3756bf2a.chunk.js.LICENSE.txt": "/puzzleboard/static/js/2.3756bf2a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2cd87651.js",
     "static/js/2.3756bf2a.chunk.js",
-    "static/js/main.01e23beb.chunk.js"
+    "static/js/main.143ad0de.chunk.js"
   ]
 }
