@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import Keyboard from './Keyboard';
 class Letter {
   constructor(letter) {
@@ -38,6 +39,16 @@ class Line {
     this.letters = []
   }
 }
+
+
+const StyledPuzzleboard = styled.div`
+  input {
+    font-size: 5rem;
+  }
+  button {
+    font-size: 3rem;
+  }
+`;
 
 const Puzzleboard = (props) => {
   const { category, answer } = props
@@ -129,11 +140,11 @@ const Puzzleboard = (props) => {
   const puzzleUrl = () => (`https://www.thewordfinder.com/wof-puzzle-generator/puzzle.php?${defaultParams()}&${lineParams()}`)
   
   return (
-    <>
+    <StyledPuzzleboard>
       <img src={thumbnailUrl()} alt="puzzleboard" width="500px"/>  
       <p>{puzzleUrl()}</p>
       <Keyboard revealOne={revealOne} revealAll={revealAll} hideAll={hideAll} revealPuzzle={revealPuzzle}/>
-    </>
+    </StyledPuzzleboard>
   );
 }
 

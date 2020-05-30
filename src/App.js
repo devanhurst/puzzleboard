@@ -5,7 +5,6 @@ import {
   Route,
   NavLink
 } from "react-router-dom";
-import styled from "styled-components"
 import Puzzleboard from "./Puzzleboard"
 
 const App = () => {
@@ -16,43 +15,40 @@ const App = () => {
     event.preventDefault();
   }
 
-  const Body = styled.div`
-    input {
-      font-size: 5rem;
-    }
-    button {
-      font-size: 3rem;
-    }
-  `;
+  const updateCategory = (event) => {
+    setCategory(event.target.value.toUpperCase())
+  }
+
+  const updateAnswer = (event) => {
+    setAnswer(event.target.value.toUpperCase())
+  }
 
   return (
-    <Body>
-      <Router>
-        <Switch>
-          <Route path="/play">
-            <Puzzleboard category={category} answer={answer} />
-          </Route>
-          <Route path="/">
-            <h1>Wheel of Fortune Puzzle Manager</h1>
-            <form onSubmit={handleSubmit}>
-              <label>
-                Category:
-                <input type="text" placeholder="TITLE" value={category} onChange={(event) => setCategory(event.target.value)} />
-              </label>
-              <br/>
-              <label>
-                Puzzle:
-                <input type="text" placeholder="WHEEL OF FORTUNE" value={answer} onChange={(event) => setAnswer(event.target.value)} />
-              </label>
-              <br/>
-            </form>
-            <NavLink to="/play">
-              Start Game
-            </NavLink>
-          </Route>
-        </Switch>
-      </Router>
-    </Body>
+    <Router>
+      <Switch>
+        <Route path="/puzzleboard/play">
+          <Puzzleboard category={category} answer={answer} />
+        </Route>
+        <Route path="/puzzleboard">
+          <h1>Wheel of Fortune Puzzle Manager</h1>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Category:
+              <input type="text" placeholder="TITLE" value={category} onChange={updateCategory} />
+            </label>
+            <br/>
+            <label>
+              Puzzle:
+              <input type="text" placeholder="WHEEL OF FORTUNE" value={answer} onChange={updateAnswer} />
+            </label>
+            <br/>
+          </form>
+          <NavLink to="/puzzleboard/play">
+            Start Game
+          </NavLink>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
