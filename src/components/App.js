@@ -28,10 +28,10 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/puzzleboard/play">
+        <Route path="/play">
           <Game category={category} answer={answer} />
         </Route>
-        <Route path="/puzzleboard">
+        <Route path="/">
           <h1>Wheel of Fortune Puzzle Manager</h1>
           <form onSubmit={handleSubmit}>
             <label>
