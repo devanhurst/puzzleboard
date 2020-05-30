@@ -23,13 +23,14 @@ const Game = (props) => {
       : "";
 
     // prettier-ignore
-    const textToCopy =
+    let textToCopy = puzzle.imageUrl();
+    if (lastLetterRevealed["letter"] !== "TOSS UP") {
+      textToCopy += 
 `
-${puzzle.imageUrl()}
 ${usedLetterboard(usedLetters)}
 ${lastLetterRevealedText}
 `;
-
+    }
     setClipboard(textToCopy);
   }, [puzzle, usedLetters, lastLetterRevealed]);
 

@@ -13,7 +13,6 @@ export default (usedLetters) => {
 **Consonants Remaining**
 ${unused(consonants)}
 **Vowels Remaining**
-${unused(vowels)}
-`
+${unused(vowels)}`
   );
 };
