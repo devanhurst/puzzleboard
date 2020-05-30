@@ -5,6 +5,7 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
+import { TextField, Fab } from "@material-ui/core";
 import Game from "./Game";
 
 const App = () => {
@@ -33,50 +34,57 @@ const App = () => {
         </Route>
         <Route path="/">
           <h1>Wheel of Fortune Puzzle Manager</h1>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Category:
-              <input
-                type="text"
-                maxLength={20}
-                placeholder="CATEGORY"
-                value={category}
-                onChange={updateCategory}
-              />
-            </label>
-            <label>
-              Puzzle:
-              <input
-                type="text"
-                maxLength={12}
-                placeholder="LINE ONE"
-                value={answer.line1}
-                onChange={(event) => updateAnswer(event.target.value, 1)}
-              />
-              <input
-                type="text"
-                maxLength={14}
-                placeholder="LINE TWO"
-                value={answer.line2}
-                onChange={(event) => updateAnswer(event.target.value, 2)}
-              />
-              <input
-                type="text"
-                maxLength={14}
-                placeholder="LINE THREE"
-                value={answer.line3}
-                onChange={(event) => updateAnswer(event.target.value, 3)}
-              />
-              <input
-                type="text"
-                maxLength={12}
-                placeholder="LINE FOUR"
-                value={answer.line4}
-                onChange={(event) => updateAnswer(event.target.value, 4)}
-              />
-            </label>
+          <form onSubmit={handleSubmit} autoComplete="off">
+            <TextField
+              label="Category"
+              variant="outlined"
+              maxLength={20}
+              placeholder="THING"
+              value={category}
+              onChange={updateCategory}
+            />
+            <br />
+            <br />
+            <TextField
+              label="Line 1"
+              variant="outlined"
+              maxLength={12}
+              placeholder="12 LETTERS MAX"
+              value={answer[1]}
+              onChange={(event) => updateAnswer(event.target.value, 1)}
+            />
+            <br />
+            <TextField
+              label="Line 2"
+              variant="outlined"
+              maxLength={14}
+              placeholder="14 LETTERS MAX"
+              value={answer[2]}
+              onChange={(event) => updateAnswer(event.target.value, 2)}
+            />{" "}
+            <br />
+            <TextField
+              label="Line 3"
+              variant="outlined"
+              maxLength={14}
+              placeholder="14 LETTERS MAX"
+              value={answer[3]}
+              onChange={(event) => updateAnswer(event.target.value, 3)}
+            />
+            <br />
+            <TextField
+              label="Line 4"
+              variant="outlined"
+              maxLength={12}
+              placeholder="12 LETTERS MAX"
+              value={answer[4]}
+              onChange={(event) => updateAnswer(event.target.value, 4)}
+            />
           </form>
-          <NavLink to="/puzzleboard/play">Start Game</NavLink>
+          <br />
+          <NavLink to="/play">
+            <Fab variant="extended">Start Game</Fab>
+          </NavLink>
         </Route>
       </Switch>
     </Router>
