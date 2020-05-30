@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import { ButtonGroup } from "@material-ui/core";
+import { Grid, ButtonGroup } from "@material-ui/core";
 import Key from "./Key";
 
 const Keyboard = (props) => {
   const { toggle } = props;
 
-  const [letter, setLetter] = useState("");
-
-  const updateLetter = (letter) => {
-    setLetter(letter.toUpperCase());
-  };
-
   return (
-    <>
-      <ButtonGroup>
+    <Grid container>
+      <Grid item xs={12}>
         <Key letter="Q" toggle={toggle} />
         <Key letter="W" toggle={toggle} />
         <Key letter="E" toggle={toggle} />
@@ -24,8 +18,8 @@ const Keyboard = (props) => {
         <Key letter="I" toggle={toggle} />
         <Key letter="O" toggle={toggle} />
         <Key letter="P" toggle={toggle} />
-      </ButtonGroup>
-      <ButtonGroup>
+      </Grid>
+      <Grid item xs={12}>
         <Key letter="A" toggle={toggle} />
         <Key letter="S" toggle={toggle} />
         <Key letter="D" toggle={toggle} />
@@ -35,8 +29,8 @@ const Keyboard = (props) => {
         <Key letter="J" toggle={toggle} />
         <Key letter="K" toggle={toggle} />
         <Key letter="L" toggle={toggle} />
-      </ButtonGroup>
-      <ButtonGroup>
+      </Grid>
+      <Grid item xs={12}>
         <Key letter="Z" toggle={toggle} />
         <Key letter="X" toggle={toggle} />
         <Key letter="C" toggle={toggle} />
@@ -44,8 +38,8 @@ const Keyboard = (props) => {
         <Key letter="B" toggle={toggle} />
         <Key letter="N" toggle={toggle} />
         <Key letter="M" toggle={toggle} />
-      </ButtonGroup>
-    </>
+      </Grid>
+    </Grid>
   );
 };
 
