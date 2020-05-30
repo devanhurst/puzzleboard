@@ -59,11 +59,14 @@ const Puzzleboard = (props) => {
     const lines = [new Line()]
     words.forEach(word => {
       let currentLine = lines.slice(-1).pop()
-      if ( currentLine.letters.length + word.letters.length + 1 > currentLine.size ) {
+
+      if ( currentLine.letters.length + word.letters.length + 1 <= currentLine.size ) {
+        currentLine.letters.push(new Blank()) 
+      } else if (currentLine.letters.length !== 0) {
         lines.push(new Line())
         currentLine = lines.slice(-1).pop()
       }
-      if (currentLine.letters.length !== 0) { currentLine.letters.push(new Blank()) }
+
       word.letters.forEach(letter => currentLine.letters.push(letter))    
     })
     return lines
@@ -85,7 +88,7 @@ const Puzzleboard = (props) => {
         buffer = 1
     }
     
-    
+    console.log(lineStrings)
     return lineStrings.map((line, index) => `ln${index + buffer}=${line}`).join('&')
   }
 
