@@ -22,7 +22,7 @@ class Letter {
 
 class Blank extends Letter {
   constructor() {
-    super("+")
+    super(" ")
     this.revealed = true
   }
 }
@@ -72,7 +72,7 @@ const Puzzleboard = (props) => {
   const [lines, setLines] = useState(generateLines())
 
   const lineParams = () => {
-    const linesAsLetters = lines.map(line => line.letters.map(letter => letter.revealed ? letter.letter : "_"))
+    const linesAsLetters = lines.map(line => line.letters.map(letter => letter.revealed ? encodeURIComponent(letter.letter) : "_"))
     const lineStrings = linesAsLetters.map(line => line.join(''))
     
     let buffer;
@@ -84,6 +84,7 @@ const Puzzleboard = (props) => {
       default:
         buffer = 1
     }
+    
     
     return lineStrings.map((line, index) => `ln${index + buffer}=${line}`).join('&')
   }
@@ -135,7 +136,7 @@ const Puzzleboard = (props) => {
     setLines(newLines)
   }
 
-  const defaultParams = () => (`bg=2&cat=${category}`)
+  const defaultParams = () => (`bg=2&cat=${encodeURIComponent(category)}`)
   const thumbnailUrl = () => (`https://www.thewordfinder.com/wof-puzzle-generator/puzzle-thumb.php?${defaultParams()}&${lineParams()}`)
   const puzzleUrl = () => (`https://www.thewordfinder.com/wof-puzzle-generator/puzzle.php?${defaultParams()}&${lineParams()}`)
   
