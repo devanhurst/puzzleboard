@@ -20,9 +20,9 @@ const App = () => {
     setCategory(event.target.value.toUpperCase());
   };
 
-  const updateAnswer = (value, line) => {
+  const updateAnswer = (value, line, limit) => {
     const newAnswer = { ...answer };
-    newAnswer[line] = value.toUpperCase();
+    newAnswer[line] = value.slice(0, limit).toUpperCase();
     setAnswer(newAnswer);
   };
 
@@ -51,7 +51,7 @@ const App = () => {
               maxLength={12}
               placeholder="12 LETTERS MAX"
               value={answer[1]}
-              onChange={(event) => updateAnswer(event.target.value, 1)}
+              onChange={(event) => updateAnswer(event.target.value, 1, 12)}
             />
             <br />
             <TextField
@@ -60,7 +60,7 @@ const App = () => {
               maxLength={14}
               placeholder="14 LETTERS MAX"
               value={answer[2]}
-              onChange={(event) => updateAnswer(event.target.value, 2)}
+              onChange={(event) => updateAnswer(event.target.value, 2, 14)}
             />{" "}
             <br />
             <TextField
@@ -69,7 +69,7 @@ const App = () => {
               maxLength={14}
               placeholder="14 LETTERS MAX"
               value={answer[3]}
-              onChange={(event) => updateAnswer(event.target.value, 3)}
+              onChange={(event) => updateAnswer(event.target.value, 3, 14)}
             />
             <br />
             <TextField
@@ -78,7 +78,7 @@ const App = () => {
               maxLength={12}
               placeholder="12 LETTERS MAX"
               value={answer[4]}
-              onChange={(event) => updateAnswer(event.target.value, 4)}
+              onChange={(event) => updateAnswer(event.target.value, 4, 12)}
             />
           </form>
           <br />
